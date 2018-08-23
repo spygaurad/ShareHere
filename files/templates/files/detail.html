@@ -1,0 +1,83 @@
+{#load static files#}
+{% extends 'files/base_layout.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="container">
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'homepage' %}">ShareHere</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+    {#                <a class="navbar-brand" href="{% url 'login' %}">Upload</a>#}
+                    {% if user.username %}
+                        <li>
+                          <form action="upload/" method="post"> {% csrf_token %}<button class="btn btn-success">Upload</button> </form>
+                          </li>
+                        <li>
+                        <form action="{% url 'logout' %}" method="get">{% csrf_token %}<button class="btn btn-success" >Logout
+                             </button> </form>
+                        </li>
+                      {% else %}
+                          <li>
+                            <form action="{% url 'login' %}" method="get">{% csrf_token %}<button class="btn btn-success" style="margin-top: 7px;">Login
+                             </button> </form>
+                          </li>
+                      {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+
+
+    <div class="container-fluid">
+
+        <h2>Directory: {{ directory_name }}</h2>
+         <div class="span12">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    <h3 style="color:red"> {{ message|safe }} </h3>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th style="padding-right: 1px; position: relative;">Size in MB</th>
+
+                </tr>
+                {% for key,value in filedict.items %}
+                    {% for k,v in size.items %}
+                        {% for ke, va in trimmed.items %}
+                            <tr>
+                                {% ifequal key k %}
+                                    {% ifequal key ke %}
+                                        <th><a href="{{ value }}">{{ va }}</a></th>
+                                        <th>{{ v  }}</th>
+                                    {% endifequal %}
+                                {% endifequal %}
+                            </tr>
+
+
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            </thead>
+        </table>
+    </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+

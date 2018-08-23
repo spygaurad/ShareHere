@@ -1,0 +1,21 @@
+
+{% include 'files/base_layout.html' %}
+
+{% block content %}
+
+<form action="" method="post" enctype="multipart/form-data">
+
+{#   {{ form }}#}
+
+{##}
+{#</form>#}
+    {% for field in form %}
+    <div class="form-group">
+    {% csrf_token %}
+        <label style="font-size: 20px;color: white; " >{{ field.label_tag }}</label>
+        <div class="input" >{{ field }}</div>
+    </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+{% endfor %}
+</form>
+{% endblock %}

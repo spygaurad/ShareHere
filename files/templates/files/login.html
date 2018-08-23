@@ -1,0 +1,60 @@
+{% extends 'files/base_layout.html' %}
+
+{% block content %}
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--header-->
+            <div class="modal-header">
+                <h2>Log In</h2>
+            </div>
+
+            <!--body(form)-->
+            <div class="modal-body">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <p>{{ error }}</p>
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" class="form-control" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Password:</label>
+                        <input type="password" name="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+            <!--footer submit button-->
+
+
+{% endblock %}
+
+{#{% block content %}#}
+{##}
+{#    <form method="POST">#}
+{#    {% csrf_token %}#}
+{#    <table>#}
+{#        <tr>#}
+{##}
+{#            <td><input type="text" name="username" id="username" required> </td>#}
+{#        </tr>#}
+{#        <tr>#}
+{##}
+{#            <td><input type="password" name="password" id="password" required> </td>#}
+{#        </tr>#}
+{#        <p>{{ error }}</p>#}
+{#    </table>#}
+{#    <button type="submit">Login</button>#}
+{#    </form>#}
+{#{% endblock %}#}
+
+
+
